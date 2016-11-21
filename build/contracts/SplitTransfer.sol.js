@@ -231,13 +231,13 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.new = function() {
     if (this.currentProvider == null) {
-      throw new Error("ConvertLib error: Please call setProvider() first before calling new().");
+      throw new Error("SplitTransfer error: Please call setProvider() first before calling new().");
     }
 
     var args = Array.prototype.slice.call(arguments);
 
     if (!this.unlinked_binary) {
-      throw new Error("ConvertLib error: contract binary not set. Can't deploy new instance.");
+      throw new Error("SplitTransfer error: contract binary not set. Can't deploy new instance.");
     }
 
     var regex = /__[^_]+_+/g;
@@ -256,7 +256,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         return name != arr[index + 1];
       }).join(", ");
 
-      throw new Error("ConvertLib contains unresolved libraries. You must deploy and link the following libraries before you can deploy a new version of ConvertLib: " + unlinked_libraries);
+      throw new Error("SplitTransfer contains unresolved libraries. You must deploy and link the following libraries before you can deploy a new version of SplitTransfer: " + unlinked_libraries);
     }
 
     var self = this;
@@ -297,7 +297,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.at = function(address) {
     if (address == null || typeof address != "string" || address.length != 42) {
-      throw new Error("Invalid address passed to ConvertLib.at(): " + address);
+      throw new Error("Invalid address passed to SplitTransfer.at(): " + address);
     }
 
     var contract_class = this.web3.eth.contract(this.abi);
@@ -308,7 +308,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.deployed = function() {
     if (!this.address) {
-      throw new Error("Cannot find deployed address: ConvertLib not deployed or address not set.");
+      throw new Error("Cannot find deployed address: SplitTransfer not deployed or address not set.");
     }
 
     return this.at(this.address);
@@ -350,33 +350,158 @@ var SolidityEvent = require("web3/lib/web3/event.js");
   "default": {
     "abi": [
       {
+        "constant": true,
+        "inputs": [],
+        "name": "getAddress",
+        "outputs": [
+          {
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "payable": false,
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "getAddressB",
+        "outputs": [
+          {
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "payable": false,
+        "type": "function"
+      },
+      {
         "constant": false,
         "inputs": [
           {
-            "name": "amount",
-            "type": "uint256"
-          },
-          {
-            "name": "conversionRate",
+            "name": "_value",
             "type": "uint256"
           }
         ],
-        "name": "convert",
+        "name": "splitSend",
         "outputs": [
           {
-            "name": "convertedAmount",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "payable": true,
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_addrB",
+            "type": "address"
+          }
+        ],
+        "name": "setAddressB",
+        "outputs": [
+          {
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "payable": false,
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [],
+        "name": "remove",
+        "outputs": [],
+        "payable": false,
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "addr",
+            "type": "address"
+          }
+        ],
+        "name": "getBalance",
+        "outputs": [
+          {
+            "name": "",
             "type": "uint256"
           }
         ],
         "payable": false,
         "type": "function"
+      },
+      {
+        "inputs": [],
+        "type": "constructor"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "name": "_from",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "name": "_userA",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "name": "_userB",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "_value",
+            "type": "uint256"
+          }
+        ],
+        "name": "TransferSplit",
+        "type": "event"
       }
     ],
-    "unlinked_binary": "0x6060604052603d8060106000396000f36504044633f3de50606060405260e060020a600035046396e4ee3d81146024575b6007565b6024356004350260408051918252519081900360200190f3",
-    "events": {},
-    "updated_at": 1479769683391,
+    "unlinked_binary": "0x60606040526002805473d5c62917d2b3c726d14f1c58827c402eed496039600160a060020a0319918216179091556003805473722a96e513cf7da4e7978cdab14d506d97c35fa3908316179055600180549091166c0100000000000000000000000033810204179055610242806100766000396000f3606060405236156100565760e060020a600035046338cc4831811461005b5780636c3364ea146100735780638bcdf6c11461008c578063a4ef9cf414610156578063a7f437791461019b578063f8b2cb4f146101c8575b610002565b34610002576101f1600254600160a060020a03165b90565b34610002576101f1600354600160a060020a0316610070565b61020d600435600080600283600254604051929091049250600160a060020a03169082156108fc029083906000818181858888f1935050505015806100f75750600354604051600160a060020a039091169082156108fc029083906000818181858888f19350505050155b1561023557600354600254600154604080518581529051600160a060020a03948516949384169392909216917f8bc0f2b378c8a08710609b2980d538cf18833f0d49d6b94be01f3b1b57cecea79181900360200190a46001915061023a565b346100025761020d600435600380546c010000000000000000000000008084020473ffffffffffffffffffffffffffffffffffffffff1990911617905560015b919050565b346100025761022160015433600160a060020a039081169116141561024057600154600160a060020a0316ff5b3461000257610223600435600160a060020a038116600090815260208190526040902054610196565b60408051600160a060020a039092168252519081900360200190f35b604080519115158252519081900360200190f35b005b60408051918252519081900360200190f35b600091505b50919050565b56",
+    "events": {
+      "0x8bc0f2b378c8a08710609b2980d538cf18833f0d49d6b94be01f3b1b57cecea7": {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "name": "_from",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "name": "_userA",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "name": "_userB",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "_value",
+            "type": "uint256"
+          }
+        ],
+        "name": "TransferSplit",
+        "type": "event"
+      }
+    },
+    "updated_at": 1479770036853,
     "links": {},
-    "address": "0xb4af8d2df0f14630d040cd0acf7d7a3c86d1a356"
+    "address": "0x56d271caf5d404793b348fef177630113daf0eca"
   }
 };
 
@@ -461,7 +586,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     Contract.links[name] = address;
   };
 
-  Contract.contract_name   = Contract.prototype.contract_name   = "ConvertLib";
+  Contract.contract_name   = Contract.prototype.contract_name   = "SplitTransfer";
   Contract.generated_with  = Contract.prototype.generated_with  = "3.2.0";
 
   // Allow people to opt-in to breaking changes now.
@@ -501,6 +626,6 @@ var SolidityEvent = require("web3/lib/web3/event.js");
   } else {
     // There will only be one version of this contract in the browser,
     // and we can use that.
-    window.ConvertLib = Contract;
+    window.SplitTransfer = Contract;
   }
 })();

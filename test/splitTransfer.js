@@ -1,0 +1,2 @@
+contract('SplitTransfer', function(accounts) {
+});
