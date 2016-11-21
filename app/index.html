@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MetaCoin - Default Truffle App</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href="./app.css" rel='stylesheet' type='text/css'>
+  <script src="./app.js"></script>
+</head>
+<body>
+  <h1>Split Ether</h1>
+  <h2>What you send it split in half</h2>
+  
+  <br>
+  <div>
+    <h2>Account A <span class="black"><span id="userA"></span> Ether</span></h2>
+  </div>
+  <div>
+    <h2>Account B <span class="black"><span id="userB"></span> Ether</span></h2>
+  </div>
+
+  <br>
+  <h1>Send</h1>
+  <br><label for="amount">Amount:</label><input type="text" id="amount" placeholder="e.g., 95"></input>
+  <br><label for="receiver">To Address:</label><input type="text" id="receiver" placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"></input>
+  <br><br><button id="send" onclick="sendCoin()">Send MetaCoin</button>
+  <br><br><button id="send" onclick="setAddressB()">set account B</button>
+  <br><br><button id="send" onclick="getAddressB()">get account B</button>
+  <br><br><button id="send" onclick="splitSend()">split send</button>
+  <br><br><button id="send" onclick="getAccount('0xb11dabc2e09bae3ecfadff742d4792ec3389cffd')">get userA Account</button>
+  <br><br>
+  <span id="status"></span>
+</body>
+</html>
