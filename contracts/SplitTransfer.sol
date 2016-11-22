@@ -9,8 +9,6 @@ contract SplitTransfer {
 	mapping (address => uint) balances;
 
 	address owner;
-	address userA = 0xd5c62917d2b3c726d14f1c58827c402eed496039;
-	address userB = 0x722a96e513cf7da4e7978cdab14d506d97c35fa3;
 
 	function SplitTransfer() {
 		owner  = msg.sender;
@@ -24,17 +22,17 @@ contract SplitTransfer {
 
 
 	event TransferSplit(address indexed _from, address indexed _userA, address indexed _userB, uint _value);
-	function splitSend(uint _value) payable returns(bool) {
+	function splitSend(address _userA, address _userB, uint _value) payable returns(bool) {
 			uint split = (_value / 2);
-			if (!userA.send(split) || !userB.send(split) ) {
-				TransferSplit(owner, userA, userB, split);
+			if (!_userA.send(split) || !_userB.send(split) ) {
+				TransferSplit(msg.sender, _userA, _userB, split);
 				return true;
 			}
 			return false;
 	}
 
 
-	function getBalance(address addr) returns(uint) {
+	/*function getBalance(address addr) returns(uint) {
 		return balances[addr];
 	}
 
@@ -50,7 +48,7 @@ contract SplitTransfer {
 	function setAddressB(address _addrB) returns (bool){
 		userB = _addrB;
 		return true;
-	}
+	}*/
 
 
 }

@@ -1,8 +1,10 @@
 'use strict';
 let accounts; //all accounts
-let main; //this is the From account
-let userA; //hardcoded userA
-let userB; //hardcoded userB
+let state = [
+  {addressDOM: 'senderAddress', valueDOM: 'senderEther' },
+  {addressDOM: 'userAAddress', valueDOM: 'userAEther' },
+  {addressDOM: 'userBAddress', valueDOM: 'userBEther' }
+];
 
 
 /**
@@ -31,16 +33,13 @@ function setBalanceValue(element){
  * @return {} []
  */
 function refreshAccounts(){
-  let userABalance = web3.eth.getBalance(userA).toString(10);
-  let userBBalance = web3.eth.getBalance(userB).toString(10);
-
-  setBalanceValue('userA')(userABalance);
-  setBalanceValue('userB')(userBBalance);
-
-  if(typeof main !== 'undefined'){
-    let etherBalance = web3.eth.getBalance(main).toString(10);
-    setBalanceValue('fromEther')(etherBalance);
-  }
+  state.forEach(function(obj){
+    let address = document.getElementById(obj.addressDOM).value;
+    if(web3.isAddress(address)){
+      let balance = web3.eth.getBalance(address).toString(10);
+      setBalanceValue(obj.valueDOM)(balance);
+    }
+  });
 }
 
 /**
@@ -52,12 +51,19 @@ function splitSend(){
   let amount = document.getElementById("amount").value;
   let actualValue = web3.toWei(amount, 'ether');
 
-  meta.splitSend.sendTransaction(actualValue, {from: main,  value: actualValue, gas: 350000}).then(function() {
-     refreshAccounts(); //these are from testrpc
-  }).catch(function(e) {
-    console.log(e);
-  });
-}
+  let main = document.getElementById(state[0].addressDOM).value;
+  let userA = document.getElementById(state[1].addressDOM).value;
+  let userB = document.getElementById(state[2].addressDOM).value;
+
+  if(web3.isAddress(main) && web3.isAddress(userA) && web3.isAddress(userB)){ //if all valid
+    meta.splitSend.sendTransaction(userA, userB, actualValue, {from: main,  value: actualValue, gas: 350000}).then(function(tx) {
+        console.log('Transaction --> ' + tx);
+        refreshAccounts();
+    }).catch(function(e) {
+      console.log(e);
+    });
+  }
+}//end of splitSend
 
 
 
@@ -65,12 +71,10 @@ function splitSend(){
  * When the From input field is set, call this method.
  * @return {}
  */
-function fromUserFilled(){
-  let address = document.getElementById("senderAddress").value;
+function filledAddress(domElement){
+  let address = document.getElementById(domElement).value;
   if(web3.isAddress(address)){
-      main = address;
-      let etherBalance = web3.eth.getBalance(address).toString(10);
-      setBalanceValue('fromEther')(etherBalance);
+      refreshAccounts();
   }
 }
 
@@ -86,8 +90,6 @@ window.onload = function() {
       return;
     }
 
-    userA = accounts[5];
-    userB = accounts[4];
     refreshAccounts(); //these are from testrpc
   });
 }

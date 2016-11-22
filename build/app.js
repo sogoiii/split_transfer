@@ -42656,7 +42656,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x6060604052603d8060106000396000f36504044633f3de50606060405260e060020a600035046396e4ee3d81146024575b6007565b6024356004350260408051918252519081900360200190f3",
     "events": {},
-    "updated_at": 1479769683391,
+    "updated_at": 1479771960946,
     "links": {},
     "address": "0xb4af8d2df0f14630d040cd0acf7d7a3c86d1a356"
   }
@@ -43311,7 +43311,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1479769683364,
+    "updated_at": 1479771960975,
     "links": {
       "ConvertLib": "0x64692f107f295fc6c040f528c22d94aaa50389a0"
     },
@@ -43855,8 +43855,8 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x6060604052600080546c0100000000000000000000000033810204600160a060020a0319909116179055610138806100376000396000f3606060405260e060020a60003504630900f010811461003f578063445df0ac146100b85780638da5cb5b146100c6578063fdacd576146100dd575b610002565b34610002576101086004356000805433600160a060020a03908116911614156100b45781905080600160a060020a031663fdacd5766001600050546040518260e060020a02815260040180828152602001915050600060405180830381600087803b156100025760325a03f115610002575050505b5050565b346100025761010a60015481565b346100025761011c600054600160a060020a031681565b346100025761010860043560005433600160a060020a03908116911614156101055760018190555b50565b005b60408051918252519081900360200190f35b60408051600160a060020a039092168252519081900360200190f3",
     "events": {},
-    "updated_at": 1479769683420,
-    "address": "0xe7726e2a317603ce48bc612da68a77c016b46af7",
+    "updated_at": 1479771961000,
+    "address": "0x7638e66827f6ccffdf7c994a1ca24dfc192bcec9",
     "links": {}
   }
 };
@@ -44339,34 +44339,16 @@ var SolidityEvent = require("web3/lib/web3/event.js");
   "default": {
     "abi": [
       {
-        "constant": true,
-        "inputs": [],
-        "name": "getAddress",
-        "outputs": [
-          {
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "getAddressB",
-        "outputs": [
-          {
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
         "constant": false,
         "inputs": [
+          {
+            "name": "_userA",
+            "type": "address"
+          },
+          {
+            "name": "_userB",
+            "type": "address"
+          },
           {
             "name": "_value",
             "type": "uint256"
@@ -44384,45 +44366,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
       },
       {
         "constant": false,
-        "inputs": [
-          {
-            "name": "_addrB",
-            "type": "address"
-          }
-        ],
-        "name": "setAddressB",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
         "inputs": [],
         "name": "remove",
         "outputs": [],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "addr",
-            "type": "address"
-          }
-        ],
-        "name": "getBalance",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
         "payable": false,
         "type": "function"
       },
@@ -44458,7 +44404,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     ],
-    "unlinked_binary": "0x60606040526002805473d5c62917d2b3c726d14f1c58827c402eed496039600160a060020a0319918216179091556003805473722a96e513cf7da4e7978cdab14d506d97c35fa3908316179055600180549091166c0100000000000000000000000033810204179055610242806100766000396000f3606060405236156100565760e060020a600035046338cc4831811461005b5780636c3364ea146100735780638bcdf6c11461008c578063a4ef9cf414610156578063a7f437791461019b578063f8b2cb4f146101c8575b610002565b34610002576101f1600254600160a060020a03165b90565b34610002576101f1600354600160a060020a0316610070565b61020d600435600080600283600254604051929091049250600160a060020a03169082156108fc029083906000818181858888f1935050505015806100f75750600354604051600160a060020a039091169082156108fc029083906000818181858888f19350505050155b1561023557600354600254600154604080518581529051600160a060020a03948516949384169392909216917f8bc0f2b378c8a08710609b2980d538cf18833f0d49d6b94be01f3b1b57cecea79181900360200190a46001915061023a565b346100025761020d600435600380546c010000000000000000000000008084020473ffffffffffffffffffffffffffffffffffffffff1990911617905560015b919050565b346100025761022160015433600160a060020a039081169116141561024057600154600160a060020a0316ff5b3461000257610223600435600160a060020a038116600090815260208190526040902054610196565b60408051600160a060020a039092168252519081900360200190f35b604080519115158252519081900360200190f35b005b60408051918252519081900360200190f35b600091505b50919050565b56",
+    "unlinked_binary": "0x606060405260018054600160a060020a0319166c0100000000000000000000000033810204179055610148806100356000396000f3606060405260e060020a60003504632b0b0f258114610029578063a7f43779146100f6575b610002565b6101236004356024356044356000806002836040519190049150600160a060020a0386169082156108fc029083906000818181858888f1935050505015806100935750604051600160a060020a0385169082156108fc029083906000818181858888f19350505050155b156101395783600160a060020a031685600160a060020a031633600160a060020a03167f8bc0f2b378c8a08710609b2980d538cf18833f0d49d6b94be01f3b1b57cecea7846040518082815260200191505060405180910390a46001915061013e565b346100025761013760015433600160a060020a039081169116141561014657600154600160a060020a0316ff5b604080519115158252519081900360200190f35b005b600091505b509392505050565b56",
     "events": {
       "0x8bc0f2b378c8a08710609b2980d538cf18833f0d49d6b94be01f3b1b57cecea7": {
         "anonymous": false,
@@ -44488,9 +44434,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1479770036853,
+    "updated_at": 1479772962012,
     "links": {},
-    "address": "0x56d271caf5d404793b348fef177630113daf0eca"
+    "address": "0xf83982f21b0c70c15c04f73cd2b5075ce2c6babc"
   }
 };
 
@@ -44673,9 +44619,11 @@ window.addEventListener('load', function() {
 
 'use strict';
 let accounts; //all accounts
-let main; //this is the From account
-let userA; //hardcoded userA
-let userB; //hardcoded userB
+let state = [
+  {addressDOM: 'senderAddress', valueDOM: 'senderEther' },
+  {addressDOM: 'userAAddress', valueDOM: 'userAEther' },
+  {addressDOM: 'userBAddress', valueDOM: 'userBEther' }
+];
 
 
 /**
@@ -44704,16 +44652,13 @@ function setBalanceValue(element){
  * @return {} []
  */
 function refreshAccounts(){
-  let userABalance = web3.eth.getBalance(userA).toString(10);
-  let userBBalance = web3.eth.getBalance(userB).toString(10);
-
-  setBalanceValue('userA')(userABalance);
-  setBalanceValue('userB')(userBBalance);
-
-  if(typeof main !== 'undefined'){
-    let etherBalance = web3.eth.getBalance(main).toString(10);
-    setBalanceValue('fromEther')(etherBalance);
-  }
+  state.forEach(function(obj){
+    let address = document.getElementById(obj.addressDOM).value;
+    if(web3.isAddress(address)){
+      let balance = web3.eth.getBalance(address).toString(10);
+      setBalanceValue(obj.valueDOM)(balance);
+    }
+  });
 }
 
 /**
@@ -44725,12 +44670,19 @@ function splitSend(){
   let amount = document.getElementById("amount").value;
   let actualValue = web3.toWei(amount, 'ether');
 
-  meta.splitSend.sendTransaction(actualValue, {from: main,  value: actualValue, gas: 350000}).then(function() {
-     refreshAccounts(); //these are from testrpc
-  }).catch(function(e) {
-    console.log(e);
-  });
-}
+  let main = document.getElementById(state[0].addressDOM).value;
+  let userA = document.getElementById(state[1].addressDOM).value;
+  let userB = document.getElementById(state[2].addressDOM).value;
+
+  if(web3.isAddress(main) && web3.isAddress(userA) && web3.isAddress(userB)){ //if all valid
+    meta.splitSend.sendTransaction(userA, userB, actualValue, {from: main,  value: actualValue, gas: 350000}).then(function(tx) {
+        console.log('Transaction --> ' + tx);
+        refreshAccounts();
+    }).catch(function(e) {
+      console.log(e);
+    });
+  }
+}//end of splitSend
 
 
 
@@ -44738,12 +44690,10 @@ function splitSend(){
  * When the From input field is set, call this method.
  * @return {}
  */
-function fromUserFilled(){
-  let address = document.getElementById("senderAddress").value;
+function filledAddress(domElement){
+  let address = document.getElementById(domElement).value;
   if(web3.isAddress(address)){
-      main = address;
-      let etherBalance = web3.eth.getBalance(address).toString(10);
-      setBalanceValue('fromEther')(etherBalance);
+      refreshAccounts();
   }
 }
 
@@ -44759,8 +44709,6 @@ window.onload = function() {
       return;
     }
 
-    userA = accounts[5];
-    userB = accounts[4];
     refreshAccounts(); //these are from testrpc
   });
 }

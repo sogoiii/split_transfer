@@ -10,7 +10,7 @@
   <h1>Split Ether</h1>
   <h2>What you send is split in half</h2>
 
-  <br>
+  <!-- <br>
   <div>
     <h2>Account A <span class="black"><span id="userA"></span> Ether</span></h2>
   </div>
@@ -18,12 +18,23 @@
     <h2>Account B <span class="black"><span id="userB"></span> Ether</span></h2>
   </div>
 
-  <br>
+  <br> -->
 
-  <h1>From </h1><span> You have: <span id='fromEther'>0</span> Ether</span>
+  <h1>From </h1><span> You have: <span id='senderEther'>0</span> Ether</span>
     <br>
-    <label for="sender">To Address:</label>
-      <input type="text" id="senderAddress" oninput="fromUserFilled()" placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"></input>
+    <label for="sender">Address:</label>
+    <input type="text" id="senderAddress" oninput="filledAddress('senderAddress')" placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"></input>
+
+  <h1>UserA </h1><span> You have: <span id='userAEther'>0</span> Ether</span>
+    <br>
+    <label for="sender">Address:</label>
+    <input type="text" id="userAAddress" oninput="filledAddress('userAAddress')" placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"></input>
+
+  <h1>UserB </h1><span> You have: <span id='userBEther'>0</span> Ether</span>
+    <br>
+    <label for="sender">Address:</label>
+    <input type="text" id="userBAddress" oninput="filledAddress('userBAddress')" placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"></input>
+
 
   <h1>Send</h1>
   <br><label for="amount">Amount:</label><input type="text" id="amount" placeholder="e.g., 95"></input>
