@@ -13,7 +13,7 @@ contract SplitTransfer {
 		owner  = msg.sender;
 	}
 
-	function remove() {
+	function destroy() {
 		if(msg.sender == owner){
 			selfdestruct(owner);
 		}
