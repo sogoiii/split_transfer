@@ -20,7 +20,7 @@ contract SplitTransfer {
 	}
 
 
-	event LogTransferSplit(address indexed _from, address indexed _userA, address indexed _userB, uint _value);
+	event LogTransferSplit(address indexed _from, address indexed _userA, address indexed _userB, uint each_received);
 	function splitSend(address _userA, address _userB) payable returns(bool) {
 			uint split = (msg.value / 2);
 
