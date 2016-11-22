@@ -6,7 +6,6 @@ pragma solidity ^0.4.2;
 // token, see: https://github.com/ConsenSys/Tokens. Cheers!
 
 contract SplitTransfer {
-	mapping (address => uint) balances;
 
 	address owner;
 
@@ -21,34 +20,15 @@ contract SplitTransfer {
 	}
 
 
-	event TransferSplit(address indexed _from, address indexed _userA, address indexed _userB, uint _value);
-	function splitSend(address _userA, address _userB, uint _value) payable returns(bool) {
-			uint split = (_value / 2);
-			if (!_userA.send(split) || !_userB.send(split) ) {
-				TransferSplit(msg.sender, _userA, _userB, split);
-				return true;
-			}
-			return false;
+	event LogTransferSplit(address indexed _from, address indexed _userA, address indexed _userB, uint _value);
+	function splitSend(address _userA, address _userB) payable returns(bool) {
+			uint split = (msg.value / 2);
+
+			if (!_userA.send(split) || !_userB.send(split) )
+				throw;
+
+			LogTransferSplit(msg.sender, _userA, _userB, split);
+			return true;
 	}
-
-
-	/*function getBalance(address addr) returns(uint) {
-		return balances[addr];
-	}
-
-
-	function getAddress() constant returns (address) {
-		return userA;
-	}
-
-	function getAddressB() constant returns (address) {
-		return userB;
-	}
-
-	function setAddressB(address _addrB) returns (bool){
-		userB = _addrB;
-		return true;
-	}*/
-
 
 }
