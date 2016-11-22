@@ -24,6 +24,8 @@ contract SplitTransfer {
 	function splitSend(address _userA, address _userB) payable returns(bool) {
 			uint split = (msg.value / 2);
 
+			if(_userA == 0 || _userB == 0) throw;
+
 			if (!_userA.send(split) || !_userB.send(split) )
 				throw;
 
